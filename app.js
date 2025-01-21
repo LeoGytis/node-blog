@@ -1,11 +1,19 @@
 const express = require("express");
-const { title } = require("process");
+const morgan = require("morgan");
 
 const app = express();
 
 app.set("view engine", "ejs");
 
 app.listen(3000);
+
+app.use(morgan("dev"));
+
+app.use((req, res, next) => {
+  console.log("🔥 :: path ::", req.path);
+  console.log("🔥 :: method ::", req.method);
+  next();
+});
 
 app.get("/", (req, res) => {
   const blogs = [
