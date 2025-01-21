@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const Blog = require("./models/blog");
 
 const username = encodeURIComponent("<leogytis>");
 const password = encodeURIComponent("<test123>");
@@ -24,6 +25,42 @@ app.set("view engine", "ejs");
 //middleware & static files
 app.use(express.static("public"));
 app.use(morgan("dev"));
+
+app.get("/add-blog", (req, res) => {
+  const blog = new Blog({
+    title: "Beuty Blog",
+    snippet: "about new blog",
+    body: "body is my bew blog",
+  });
+  blog
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/all-blogs", (req, res) => {
+  Blog.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/single-blog", (req, res) => {
+  Blog.findById("6790012b1923451dc94ee2ba")
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 app.use((req, res, next) => {
   console.log("🔥 :: path ::", req.path);
