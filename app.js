@@ -1,14 +1,25 @@
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
+
+const username = encodeURIComponent("<leogytis>");
+const password = encodeURIComponent("<test123>");
 
 //express app
 const app = express();
 
+//connect to mongoDB
+
+const dbURI =
+  "mongodb+srv://leogytis:test123@nodeblog.wo7j5.mongodb.net/?retryWrites=true&w=majority&appName=nodeblog";
+
+mongoose
+  .connect(dbURI)
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err));
+
 //register view engine
 app.set("view engine", "ejs");
-
-//listen for requests
-app.listen(3000);
 
 //middleware & static files
 app.use(express.static("public"));
