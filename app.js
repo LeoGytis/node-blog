@@ -106,6 +106,10 @@ app.get("/blogs", (req, res) => {
     });
 });
 
+app.get("/blogs/create", (req, res) => {
+  res.render("create", { title: "Create new blog" });
+});
+
 app.get("/blogs/:id", (req, res) => {
   const id = req.params.id;
   Blog.findById(id)
@@ -130,8 +134,15 @@ app.post("/blogs", (req, res) => {
     });
 });
 
-app.get("/blogs/create", (req, res) => {
-  res.render("create", { title: "Create new blog" });
+app.delete("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => {
+      console.log("🔥 :: err ::", err);
+    });
 });
 
 app.use((req, res) => {
