@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
 
 body {
-  max-width: 1200px;
+  max-width: 1024px;
   margin: 20px auto;
   padding: 0 20px;
   font-family: "Noto Serif", serif;
+  background-color: #00a476;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
+  /* background-image: url("https://www.transparenttextures.com/patterns/dark-exa.png"); */
 }
 p,
 h1,
@@ -24,7 +27,7 @@ nav {
   background-color: #162544;
   color: #fff !important;
   padding: 20px;
-  border-bottom: 8px solid #00a476;
+  margin-bottom: 12px;
   border-radius: 8px 8px 0 0;
 }
 nav ul {
@@ -49,7 +52,9 @@ nav a:hover {
   font-weight: 300;
 }
 footer {
-  color: #777;
+  display: flex;
+  padding-left: 10px;
+  color: #fff;
   text-align: center;
   margin: 80px auto 20px;
 }
