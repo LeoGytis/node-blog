@@ -90,3 +90,18 @@ textarea {
   font-size: 1.2em;
   cursor: pointer;
 }
+
+.read-more {
+  color: blue;
+  font-size: 0.75em;
+  cursor: pointer;
+}
+
+.delete {
+  color: red;
+  margin-left: 20px;
+  padding: 6px 12px;
+  border: 1px solid red;
+  font-size: 0.75rem;
+  cursor: pointer;
+}

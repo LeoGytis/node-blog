@@ -106,8 +106,19 @@ app.get("/blogs", (req, res) => {
     });
 });
 
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      console.log("🔥 :: result ::", result);
+      res.render("details", { blog: result, title: "Blog Details" });
+    })
+    .catch((err) => {
+      console.log("🔥 :: err ::", err);
+    });
+});
+
 app.post("/blogs", (req, res) => {
-  console.log("🔥 :: req ::", req.body);
   const blog = new Blog(req.body);
   blog
     .save()
