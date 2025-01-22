@@ -53,7 +53,6 @@ const blog_edit = (req, res) => {
 
 const blog_edit_patch = (req, res) => {
   const id = req.params.id;
-  console.log("🔥 :: id ::", id);
 
   if (!Object.keys(req.body).length) {
     return res.status(400).json({ error: "No fields provided for update" });
@@ -61,13 +60,11 @@ const blog_edit_patch = (req, res) => {
 
   Blog.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
     .then((result) => {
-      res
-        .status(200)
-        .json({ message: "Blog updated successfully", blog: result });
+      res.status(200);
+      res.redirect(`/blogs/${id}`);
     })
     .catch((err) => {
       console.log("🔥 :: err ::", err);
-      console.error(err);
       res.status(500).json({ error: "Failed to update the blog" });
     });
 };

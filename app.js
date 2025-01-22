@@ -65,8 +65,9 @@ app.get("/single-blog", (req, res) => {
 });
 
 app.use((req, res, next) => {
-  // console.log("🔥 :: path ::", req.path);
-  // console.log("🔥 :: method ::", req.method);
+  console.log("🔥 :: path ::", req.path);
+  console.log("🔥 :: method ::", req.method);
+  console.log("🔥 :: Body ::", req.body);
   next();
 });
 
