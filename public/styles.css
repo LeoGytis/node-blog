@@ -54,13 +54,22 @@ h2 {
 }
 h3 {
   text-transform: capitalize;
-  margin-top: 16px;
   margin-bottom: 10px;
 }
 .content {
   margin-left: 20px;
 }
 /* index styles */
+
+.content-card {
+  display: block;
+  margin: 0 0 20px 0;
+  padding: 20px;
+  border-left: 6px solid crimson;
+  border: 1px solid coral;
+  border-radius: 8px;
+}
+
 /* details styles */
 /* create styles */
 .create-blog form {
