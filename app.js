@@ -1,17 +1,16 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const blogRoutes = require("./routes/blogRoutes");
 
-//express app
 const app = express();
 
 //connect to mongoDB
-const username = encodeURIComponent("<leogytis>");
-const password = encodeURIComponent("<test123>");
-const dbURI =
-  "mongodb+srv://leogytis:test123@nodeblog.wo7j5.mongodb.net/?retryWrites=true&w=majority&appName=nodeblog";
+const username = encodeURIComponent(process.env.DB_USERNAME);
+const password = encodeURIComponent(process.env.DB_PASSWORD);
+const dbURI = `mongodb+srv://${username}:${password}@nodeblog.wo7j5.mongodb.net/?retryWrites=true&w=majority&appName=nodeblog`;
 
 mongoose
   .connect(dbURI)
