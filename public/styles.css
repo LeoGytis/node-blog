@@ -63,6 +63,7 @@ h3 {
 .content {
   background-color: #162544;
   padding: 20px;
+  padding-bottom: 40px;
   border-radius: 0 0 8px 8px;
 }
 
@@ -133,7 +134,7 @@ form > input {
   color: #fff;
 }
 
-.delete {
+.button {
   color: #fff;
   padding: 12px 24px;
   border: 1px solid #00a476;
@@ -142,7 +143,7 @@ form > input {
   cursor: pointer;
 }
 
-.delete:hover {
+.button:hover {
   cursor: pointer;
   box-shadow: 1px 2px 3px #00a476;
 }

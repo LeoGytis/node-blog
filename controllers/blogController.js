@@ -39,6 +39,37 @@ const blog_create_post = (req, res) => {
     });
 };
 
+const blog_edit = (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("blogs/edit", { blog: result, title: "Blog Edit page" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("404", { title: "Blog not found" });
+    });
+};
+
+const blog_edit_put = (req, res) => {
+  const id = req.params.id;
+
+  if (!req.body.title || !req.body.snippet || !req.body.body) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  Blog.findByIdAndUpdate(id, req.body, { new: true })
+    .then((result) => {
+      res
+        .status(200)
+        .json({ message: "Blog updated successfully", blog: result });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Failed to update the blog" });
+    });
+};
+
 const blog_delete = (req, res) => {
   const id = req.params.id;
   Blog.findByIdAndDelete(id)
@@ -55,5 +86,7 @@ module.exports = {
   blog_details,
   blog_create_get,
   blog_create_post,
+  blog_edit,
+  blog_edit_put,
   blog_delete,
 };

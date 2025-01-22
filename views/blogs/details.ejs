@@ -1,4 +1,3 @@
-views/details.ejs
 <html lang="en">
   <%- include("../partials/head.ejs") %>
 
@@ -10,7 +9,10 @@ views/details.ejs
       <div class="content content-card">
         <p><%= blog.body %></p>
       </div>
-      <a class="delete" data-doc="<%= blog._id %>">DELETE</a>
+      <div>
+        <a class="button delete" data-doc="<%= blog._id %>">DELETE</a>
+        <a class="button edit" data-doc="<%= blog._id %>">EDIT</a>
+      </div>
       <br />
     </div>
 
@@ -18,6 +20,7 @@ views/details.ejs
 
     <script>
       const trashcan = document.querySelector("a.delete");
+      const edit = document.querySelector("a.edit");
       trashcan.addEventListener("click", (e) => {
         const endpoint = `/blogs/${trashcan.dataset.doc}`;
         fetch(endpoint, {
@@ -26,6 +29,10 @@ views/details.ejs
           .then((response) => response.json())
           .then((data) => (window.location.href = data.redirect))
           .catch((err) => console.log(err));
+      });
+      edit.addEventListener("click", (e) => {
+        const endpoint = `/blogs/${edit.dataset.doc}/edit`;
+        window.location.href = endpoint;
       });
     </script>
   </body>
