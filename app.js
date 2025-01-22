@@ -1,16 +1,15 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 const blogRoutes = require("./routes/blogRoutes");
-
-const username = encodeURIComponent("<leogytis>");
-const password = encodeURIComponent("<test123>");
 
 //express app
 const app = express();
 
 //connect to mongoDB
-
+const username = encodeURIComponent("<leogytis>");
+const password = encodeURIComponent("<test123>");
 const dbURI =
   "mongodb+srv://leogytis:test123@nodeblog.wo7j5.mongodb.net/?retryWrites=true&w=majority&appName=nodeblog";
 
@@ -26,6 +25,8 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+// Middleware to support PUT and PATCH via forms
+app.use(methodOverride("_method"));
 
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({

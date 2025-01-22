@@ -51,20 +51,22 @@ const blog_edit = (req, res) => {
     });
 };
 
-const blog_edit_put = (req, res) => {
+const blog_edit_patch = (req, res) => {
   const id = req.params.id;
+  console.log("🔥 :: id ::", id);
 
-  if (!req.body.title || !req.body.snippet || !req.body.body) {
-    return res.status(400).json({ error: "All fields are required" });
+  if (!Object.keys(req.body).length) {
+    return res.status(400).json({ error: "No fields provided for update" });
   }
 
-  Blog.findByIdAndUpdate(id, req.body, { new: true })
+  Blog.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
     .then((result) => {
       res
         .status(200)
         .json({ message: "Blog updated successfully", blog: result });
     })
     .catch((err) => {
+      console.log("🔥 :: err ::", err);
       console.error(err);
       res.status(500).json({ error: "Failed to update the blog" });
     });
@@ -87,6 +89,6 @@ module.exports = {
   blog_create_get,
   blog_create_post,
   blog_edit,
-  blog_edit_put,
+  blog_edit_patch,
   blog_delete,
 };

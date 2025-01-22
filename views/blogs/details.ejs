@@ -31,7 +31,7 @@
           .catch((err) => console.log(err));
       });
       edit.addEventListener("click", (e) => {
-        const endpoint = `/blogs/${edit.dataset.doc}/edit`;
+        const endpoint = `/blogs/edit/${edit.dataset.doc}`;
         window.location.href = endpoint;
       });
     </script>
