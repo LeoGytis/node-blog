@@ -10,7 +10,7 @@ const app = express();
 //connect to mongoDB
 const username = encodeURIComponent(process.env.DB_USERNAME);
 const password = encodeURIComponent(process.env.DB_PASSWORD);
-const dbURI = `mongodb+srv://${username}:${password}@nodeblog.wo7j5.mongodb.net/?retryWrites=true&w=majority&appName=nodeblog`;
+const dbURI = `mongodb+srv://${username}:${password}@nodeblog.wo7j5.mongodb.net/blogs?retryWrites=true&w=majority&appName=nodeblog`;
 
 mongoose
   .connect(dbURI)
